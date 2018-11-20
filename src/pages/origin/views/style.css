@@ -19,3 +19,8 @@
 .am-tab-bar-tab {
   height: 100%;
 }
+
+.am-tab-bar-tab-title {
+  font-size: .24rem !important;
+  margin-top: 10px !important;
+}

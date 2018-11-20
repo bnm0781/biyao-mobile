@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import { HomeContainer } from 'pages/home'
+import { OriginContainer as Origin } from 'pages/origin'
 
 class App extends Component {
   render() {
     return (
-      <HomeContainer></HomeContainer>
+      <Origin></Origin>
     )
   }
 }

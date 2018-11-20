@@ -11,7 +11,8 @@ module.exports = function override(config, env) {
     '@': resolve('src'),
     'styles': resolve('src/assets/styles'),
     'icon': resolve('src/assets/icon'),
-    'pages': resolve('src/pages')
+    'pages': resolve('src/pages'),
+    'common': resolve('src/components/common')
   }
   return config;
 };

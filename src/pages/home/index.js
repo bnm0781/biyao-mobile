@@ -1,4 +1,4 @@
-import HomeContainer from './HomeContainer'
+import HomeContainer from './views/HomeContainer'
 
 export {
   HomeContainer

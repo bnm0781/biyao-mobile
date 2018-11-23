@@ -48,9 +48,8 @@ class SwiperContainer extends Component {
               background: '#f7b200' }}
           >
             {this.state.data.map(val => (
-              <a
+              <span
                 key={val}
-                href="javascript:void(0)"
                 style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
               >
                 <img
@@ -62,7 +61,7 @@ class SwiperContainer extends Component {
                     this.setState({ imgHeight: 'auto' });
                   }}
                 />
-              </a>
+              </span>
             ))}
           </Carousel>
         </WingBlank>

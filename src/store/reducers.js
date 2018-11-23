@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable'
 
-import { reducer as commend } from 'pages/home/components/commend'    // commend store 分支
+import { reducer as home } from 'pages/home'    // home store 分支
 
 export default combineReducers({
-  commend
+  home
 })

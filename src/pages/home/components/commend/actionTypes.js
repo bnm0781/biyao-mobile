@@ -1,1 +1,0 @@
-export const POST_COMMENDLIST_DATA = 'commend/post_commendList_data'

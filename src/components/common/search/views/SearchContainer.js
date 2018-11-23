@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 
-import SearchUI from './SearchUI'
+import { Search, SearchIcon, SearchDefaultValue } from './styledComponent'
+
+import searchIcon from 'icon/search.png'
 
 class SearchContainer extends Component {
   render() {
     return (
-      <SearchUI></SearchUI>
+      <Search>
+        <SearchIcon>
+          <img src={searchIcon} alt=""/>
+        </SearchIcon>
+        <SearchDefaultValue>请输入您想要的商品</SearchDefaultValue>
+      </Search>
     );
   }
 }

@@ -4,7 +4,7 @@ const Search = styled.div `
   display: block;
   width: 7.1rem;
   height: .6rem;
-  margin: .14rem auto 0;
+  margin: .14rem auto .12rem;
   border-radius: .06rem;
   background-color: #f2f2f2;
 `

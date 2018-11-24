@@ -41,8 +41,7 @@ export const commendListDataAsyncAgain = (dispatch, homeScroll, pageIndex) => {
     fetch('/api/getHomeProductList', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;',
-          'X-Requested-With': 'XMLHttpRequest'
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
         },
         body: qs.stringify({
           pageIndex: pageIndex,

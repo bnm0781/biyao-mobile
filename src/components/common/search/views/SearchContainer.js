@@ -5,6 +5,14 @@ import { Search, SearchIcon, SearchDefaultValue } from './styledComponent'
 import searchIcon from 'icon/search.png'
 
 class SearchContainer extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   render() {
     return (
       <Search>

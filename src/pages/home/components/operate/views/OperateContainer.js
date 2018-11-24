@@ -61,6 +61,14 @@ class OperateContainer extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   render() {
     return (
       <Operate>
@@ -68,10 +76,10 @@ class OperateContainer extends Component {
         {
           this.state.operateList.map(item => (
             <li key={item.topicId ? item.topicId : item.categoryId}>
-              <a href="javascript:void(0)">
+              <i>
                 <img src={`${item.operateImgUrl}`} alt=""/>
                 <span>{item.operateTitle}</span>
-              </a>
+              </i>
             </li>
           ))
         }

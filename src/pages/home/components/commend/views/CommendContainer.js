@@ -11,10 +11,6 @@ const mapState = (state) => {
 }
 
 class CommendContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Commend>

@@ -5,7 +5,8 @@ const GroupBuying = styled.div `
   z-index: 3;
   overflow: hidden;
   position: fixed;
-  bottom: 1.28rem;
+  /* bottom: 1.28rem; */
+  bottom: ${props => (props.isShow ? '1.28rem' : 0)}
   left: 50%;
   margin-left: -37.05%;
   background: rgba(0, 0, 0, .7);
@@ -67,7 +68,7 @@ const GroupBuying = styled.div `
       border-radius: 50%;
     }
     .nickname {
-      width: 1.64rem;
+      max-width: 1.64rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

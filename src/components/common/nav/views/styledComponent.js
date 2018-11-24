@@ -32,23 +32,26 @@ const CategoryList = styled.div `
     display: inline-block;
     padding-left: .2rem;
   }
-  li {
-    display: inline-block;
-  }
-  a {
+`
+
+const CategoryListLi = styled.li `
+  display: inline-block;
+  i {
     display: inline-block;
     height: .74rem;
     padding: 0 .2rem;
-    border-bottom: .04rem solid transparent;
+    border-bottom: .04rem solid ${props => props.active ? '#7f4395' : 'transparent'};
     line-height: .74rem;
     text-align: center;
     font-size: .3rem;
-    color: gray;
+    /* color: gray; */
+    color: ${props => props.active ? '#7f4395' : 'gray'}
   }
 `
 
 export {
   Nav,
   NavFirstCate,
-  CategoryList
+  CategoryList,
+  CategoryListLi
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BScroll from 'better-scroll'
 
-import { Nav, NavFirstCate, CategoryList } from './styledComponent'
+import { Nav, NavFirstCate, CategoryList, CategoryListLi } from './styledComponent'
 
 class NavContainer extends Component {
   constructor(props) {
@@ -29,8 +29,10 @@ class NavContainer extends Component {
         {category: '汽配', to: '', categoryId: 430},
         {category: '医疗器械', to: '', categoryId: 547},
         {category: '定制', to: '', categoryId: 578},
-      ]
+      ],
+      activeIndex: 0
     }
+    this.navLiClick = this.navLiClick.bind(this)
   }
 
   componentDidMount() {
@@ -41,15 +43,35 @@ class NavContainer extends Component {
     })
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  navLiClick(event, index) {
+    this.setState({activeIndex: index}, () => {
+      console.log(this.state.activeIndex === index);
+    })
+  }
+
   render() {
     return (
       <Nav>
         <NavFirstCate>
-          <CategoryList ref={el => this.navListScrollEl = el}>
+          <CategoryList
+            ref={el => this.navListScrollEl = el}
+          >
             <ul>
               {
-                this.state.categoryList.map(item => (
-                  <li key={item.categoryId}><a>{item.category}</a></li>
+                this.state.categoryList.map((item, index) => (
+                  <CategoryListLi
+                    key={item.categoryId}
+                    active={this.state.activeIndex === index}
+                    onClick={(event) => this.navLiClick(event, index)}
+                  ><i>{item.category}</i></CategoryListLi>
                 ))
               }
             </ul>

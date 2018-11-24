@@ -4,13 +4,9 @@ import { Carousel, WingBlank } from 'antd-mobile';
 import { Swiper } from './styledComponent'
 
 class SwiperContainer extends Component {
-  state = {
-    data: ['1', '2', '3', '4', '5', '6'],
-    imgHeight: '2.6rem',
-  }
-
-  componentDidMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       data: [
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JT2AU4KxAAC5sX2fhEg369.jpg',
         'https://bfs.biyao.com/group1/M00/6E/F4/rBACVFv1JVuAMnlRAACYp-q-T2Q201.jpg',
@@ -19,7 +15,16 @@ class SwiperContainer extends Component {
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1Jb-AIzWYAACWgjQ5qyU181.jpg',
         'https://bfs.biyao.com/group1/M00/70/A8/rBACYVv1Jd6AMLQoAACZgPmIwsg613.jpg'
       ],
-    });
+      imgHeight: '2.6rem'
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
   }
 
   render() {

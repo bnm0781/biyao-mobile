@@ -6,6 +6,7 @@ import { HeaderContainer as Header} from '../components/header'                 
 import { SwiperContainer as Swiper } from '../components/swiper'                   // 轮播图组件
 import { GuaranteeContainer as Guarantee } from '../components/guarantee'          // 保证书组件
 import { OperateContainer as Operate } from '../components/operate'                // 分类列表组件
+import { FloorsContainer as Floors } from '../components/floors'                   // 楼梯组件
 import { CommendContainer as Commend } from '../components/commend'                // 为你推荐组件
 import { GroupBuyingContainer as GroupBuying } from '../components/groupBuying'    // 拼团组件
 
@@ -27,7 +28,8 @@ class HomeContainer extends Component {
     super(props);
     this.state = {
       pageIndex: 1,
-      isLoading: '上拉加载更多'
+      isLoading: '上拉加载更多',
+      isShow: true
     }
   }
 
@@ -36,6 +38,7 @@ class HomeContainer extends Component {
     this.homeScroll = new BScroll(this.homeScrollEl, {
       click: true,
       scrollY: true,
+      probeType: 1,
       pullUpLoad: {
         threshold: 50
       }
@@ -64,6 +67,21 @@ class HomeContainer extends Component {
         }))
       }
     })
+
+    // 监听滚动事件
+    this.homeScroll.on('scroll', (position) => {
+      if ( position.y > -650) {
+        this.setState(state => ({
+          ...state,
+          isShow: true
+        }))
+      } else {
+        this.setState(state => ({
+          ...state,
+          isShow: false
+        }))
+      }
+    })
   }
 
   render() {
@@ -71,10 +89,11 @@ class HomeContainer extends Component {
       <Fragment>
         <Header></Header>
         <div style={{height: '100%'}} ref={el => this.homeScrollEl = el}>
-          <div style={{paddingTop: '1.6rem'}}>
+          <div id="homeScroll" style={{paddingTop: '1.6rem'}}>
             <Swiper></Swiper>
             <Guarantee></Guarantee>
             <Operate></Operate>
+            <Floors></Floors>
             <Commend homeScroll={this.homeScroll}></Commend>
             <div style={{
               height: '1rem',
@@ -84,7 +103,7 @@ class HomeContainer extends Component {
             }}>{this.state.isLoading}</div>
           </div>
         </div>
-        <GroupBuying></GroupBuying>
+        {/* <GroupBuying isShow={this.state.isShow} ></GroupBuying> */}
       </Fragment>
     );
   }

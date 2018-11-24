@@ -3,6 +3,14 @@ import React, { Component } from 'react';
 import { Guarantee } from './styledComponent'
 
 class GuaranteeContainer extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   render() {
     return (
       <Guarantee>

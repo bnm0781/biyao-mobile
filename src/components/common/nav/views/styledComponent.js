@@ -25,8 +25,7 @@ const CategoryList = styled.div `
   width: 100%;
   height: 100%;
   white-space: nowrap;
-  /* overflow: hidden; */
-  overflow-y: scroll;
+  overflow: hidden;
   ul {
     height: 100%;
     display: inline-block;
@@ -44,7 +43,6 @@ const CategoryListLi = styled.li `
     line-height: .74rem;
     text-align: center;
     font-size: .3rem;
-    /* color: gray; */
     color: ${props => props.active ? '#7f4395' : 'gray'}
   }
 `

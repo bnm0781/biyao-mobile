@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
+import { Route, Switch } from 'react-router-dom'
 
 import { HeaderContainer as Header} from '../components/header'                    // 首页头部组件
-import { SwiperContainer as Swiper } from '../components/swiper'                   // 轮播图组件
-import { GuaranteeContainer as Guarantee } from '../components/guarantee'          // 保证书组件
-import { OperateContainer as Operate } from '../components/operate'                // 分类列表组件
-import { FloorsContainer as Floors } from '../components/floors'                   // 楼梯组件
-import { CommendContainer as Commend } from '../components/commend'                // 为你推荐组件
+import HomeRecommend from './HomeRecommend'                                        // 推荐组件
+import HomeCategory from './HomeCategory'                                          // 分类显示组件
 import { GroupBuyingContainer as GroupBuying } from '../components/groupBuying'    // 拼团组件
 
 import { commendListDataAsync, commendListDataAsyncAgain } from '../actionCreator'
@@ -27,9 +25,9 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageIndex: 1,
-      isLoading: '上拉加载更多',
-      isShow: true
+      pageIndex: 1,               // 上拉加载时所要传递的 Form Date 参数
+      isLoading: '上拉加载更多',    // 推荐页面底部所渲染的文字
+      isShow: true                // 判断是否显示团购弹幕，true 为显示，false 为不显示
     }
   }
 
@@ -70,6 +68,8 @@ class HomeContainer extends Component {
 
     // 监听滚动事件
     this.homeScroll.on('scroll', (position) => {
+      // 如果滚动的距离小于650，使团购弹幕显示
+      // 大于650，使其隐藏
       if ( position.y > -650) {
         this.setState(state => ({
           ...state,
@@ -89,19 +89,10 @@ class HomeContainer extends Component {
       <Fragment>
         <Header></Header>
         <div style={{height: '100%'}} ref={el => this.homeScrollEl = el}>
-          <div id="homeScroll" style={{paddingTop: '1.6rem'}}>
-            <Swiper></Swiper>
-            <Guarantee></Guarantee>
-            <Operate></Operate>
-            <Floors></Floors>
-            <Commend homeScroll={this.homeScroll}></Commend>
-            <div style={{
-              height: '1rem',
-              lineHeight: '1rem',
-              textAlign: 'center',
-              color: 'gray'
-            }}>{this.state.isLoading}</div>
-          </div>
+          <Switch>
+            <Route path='/' exact render={() => <HomeRecommend isLoading={this.state.isLoading} />}></Route>
+            <Route path='/category' exact component={HomeCategory}></Route>
+          </Switch>
         </div>
         {/* <GroupBuying isShow={this.state.isShow} ></GroupBuying> */}
       </Fragment>

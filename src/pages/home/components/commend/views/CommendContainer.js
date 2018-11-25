@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Commend, CommendList, ItemImg, ItemDes, SingleWrap, ItemPrice, ItemLabels, ItemBck, ItemTitle, ItemPraiseWrap } from './styledComponent'
 import { TitleContainer as Title } from 'common/title'     // commend 模块标题组件
 
+// 从 store 中获取 commend 数据
 const mapState = (state) => {
   return {
     commendList: state.getIn(['home', 'commendList'])

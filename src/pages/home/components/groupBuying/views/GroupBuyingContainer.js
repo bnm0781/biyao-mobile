@@ -9,10 +9,9 @@ class GroupBuyingContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupList: []
+      groupList: []    // 团购推送数据列表
     }
   }
-
 
   componentDidMount() {
     fetch('/api/getHomeGroupInfo', {
@@ -37,7 +36,6 @@ class GroupBuyingContainer extends Component {
     // 因为请求数据前 groupList 为空数组，Carousel 不能滚动
     // 需要利用 immutable 判断 groupList 是否为空数组
     // 当请求完毕数据后再渲染组件
-    console.log(0);
     if (List(this.state.groupList).size !== 0) {
       return (
         <GroupBuying {...this.props}>

@@ -10,7 +10,6 @@ class FloorsContainer extends Component {
     this.state = {
       floors: {}
     }
-
   }
 
   componentDidMount() {

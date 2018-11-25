@@ -6,6 +6,7 @@ class OperateContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // 推荐列表
       operateList: [
         {
           operateTitle: '一起拼',

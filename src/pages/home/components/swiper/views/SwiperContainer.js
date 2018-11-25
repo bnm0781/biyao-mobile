@@ -7,13 +7,14 @@ class SwiperContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // swiper 渲染的图片
       data: [
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JT2AU4KxAAC5sX2fhEg369.jpg',
         'https://bfs.biyao.com/group1/M00/6E/F4/rBACVFv1JVuAMnlRAACYp-q-T2Q201.jpg',
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JYeAPyUmAACAePPxJx4474.jpg',
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JaeAITl8AACuP5MH0Cg174.jpg',
         'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1Jb-AIzWYAACWgjQ5qyU181.jpg',
-        'https://bfs.biyao.com/group1/M00/70/A8/rBACYVv1Jd6AMLQoAACZgPmIwsg613.jpg'
+        'https://bfs.biyao.com/group1/M00/71/B6/rBACYVv31eWAVnWMAACeJ8rmLCI538.jpg'
       ],
       imgHeight: '2.6rem'
     }

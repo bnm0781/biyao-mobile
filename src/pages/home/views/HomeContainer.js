@@ -1,103 +1,24 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import BScroll from 'better-scroll'
 import { Route, Switch } from 'react-router-dom'
 
 import { HeaderContainer as Header} from '../components/header'                    // 首页头部组件
 import HomeRecommend from './HomeRecommend'                                        // 推荐组件
 import HomeCategory from './HomeCategory'                                          // 分类显示组件
-import { GroupBuyingContainer as GroupBuying } from '../components/groupBuying'    // 拼团组件
-
-import { commendListDataAsync, commendListDataAsyncAgain } from '../actionCreator'
-
-const mapDispatch = (dispatch) => {
-  return {
-    getCommendList(homeScroll, pageIndex) {
-      dispatch(commendListDataAsync(dispatch, homeScroll, pageIndex))
-    },
-    getCommendListAgain(homeScroll, pageIndex) {
-      dispatch(commendListDataAsyncAgain(dispatch, homeScroll, pageIndex))
-    }
-  }
-}
 
 class HomeContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pageIndex: 1,               // 上拉加载时所要传递的 Form Date 参数
-      isLoading: '上拉加载更多',    // 推荐页面底部所渲染的文字
-      isShow: true                // 判断是否显示团购弹幕，true 为显示，false 为不显示
-    }
-  }
-
-  componentDidMount() {
-    // 除首页头部外滑动效果
-    this.homeScroll = new BScroll(this.homeScrollEl, {
-      click: true,
-      scrollY: true,
-      probeType: 1,
-      pullUpLoad: {
-        threshold: 50
-      }
-    })
-
-    // 加载第一页数据
-    this.props.getCommendList(this.homeScroll, this.state.pageIndex)
-    this.setState(state => ({
-      ...state,
-      pageIndex: state.pageIndex + 1
-    }))
-
-    // 通过上拉加载判断是否请求数据
-    this.homeScroll.on('pullingUp', () => {
-      if (this.state.pageIndex < 7) {
-        this.props.getCommendListAgain(this.homeScroll, this.state.pageIndex)
-        this.setState(state => ({
-          ...state,
-          pageIndex: state.pageIndex + 1
-        }))
-        this.homeScroll.finishPullUp()
-      } else {
-        this.setState(state => ({
-          ...state,
-          isLoading: '没有更多数据了'
-        }))
-      }
-    })
-
-    // 监听滚动事件
-    this.homeScroll.on('scroll', (position) => {
-      // 如果滚动的距离小于650，使团购弹幕显示
-      // 大于650，使其隐藏
-      if ( position.y > -650) {
-        this.setState(state => ({
-          ...state,
-          isShow: true
-        }))
-      } else {
-        this.setState(state => ({
-          ...state,
-          isShow: false
-        }))
-      }
-    })
-  }
-
   render() {
     return (
       <Fragment>
         <Header></Header>
-        <div style={{height: '100%'}} ref={el => this.homeScrollEl = el}>
+        <div style={{height: '100%'}}>
           <Switch>
-            <Route path='/' exact render={() => <HomeRecommend isLoading={this.state.isLoading} />}></Route>
+            <Route path='/' exact render={() => <HomeRecommend />}></Route>
             <Route path='/category' exact component={HomeCategory}></Route>
           </Switch>
         </div>
-        {/* <GroupBuying isShow={this.state.isShow} ></GroupBuying> */}
       </Fragment>
-    );
+    )
   }
 }
 
-export default connect(null, mapDispatch)(HomeContainer)
+export default HomeContainer

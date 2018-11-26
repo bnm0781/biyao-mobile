@@ -8,7 +8,7 @@ const Category = styled.div `
   padding-top: 2.5rem;
 `
 
-const CategoryItem = styled.div `
+const CategoryList = styled.div `
   width: 100%;
   .cateName {
     height: .87rem;
@@ -77,7 +77,7 @@ const CategoryItem = styled.div `
     span {
       display: inline-block;
       line-height: .2rem;
-      margin-right: .08rem;
+      margin-right: .14rem;
       font-family: PingFangSC-Regular;
       font-size: .18rem;
       color: #FFF;
@@ -115,5 +115,5 @@ const CategoryItem = styled.div `
 export {
   Main,
   Category,
-  CategoryItem
+  CategoryList
 }

@@ -2,7 +2,8 @@ import { fromJS, Map } from 'immutable'
 import { POST_COMMENDLIST_DATA, POST_COMMENDLIST_DATA_AGAIN } from './actionTypes'
 
 const defaultState = fromJS({
-  commendList: []
+  commendList: [],
+  categoryList: []
 })
 
 export default (state = defaultState, action) => {

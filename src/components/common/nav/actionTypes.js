@@ -1,0 +1,1 @@
+export const POST_CATEGORYLIST_DATA = 'home/post_categoryList_data'

@@ -10,26 +10,11 @@ const NavSecondCate = styled.div `
     width: 5.5rem;
     overflow: hidden;
     position: relative;
+    white-space: nowrap;
   }
   ul {
     height: .89rem;
-    overflow: hidden;
-  }
-  li {
-    float: left;
-    padding: .2rem .2rem 0 0;
-  }
-  i {
-    display: block;
-    height: .46rem;
-    padding: 0 .2rem;
-    border: .01rem solid #7f4395;
-    border-radius: .28rem;
-    line-height: .46rem;
-    text-align: center;
-    font-size: .24rem;
-    min-width: 1.15rem;
-    color: #7f4395;
+    display: inline-block;
   }
   .nav-secondCate-line {
     position: absolute;
@@ -63,9 +48,27 @@ const NavSecondCate = styled.div `
     margin-left: .1rem;
     }
   }
-}
+`
+
+const NavSecondCateLi = styled.li`
+  display: inline-block;
+  padding: .2rem .2rem 0 0;
+  i {
+    display: block;
+    height: .46rem;
+    padding: 0 .2rem;
+    border: .01rem solid ${props => props.active ? 'transparent' : '#7f4395'};
+    border-radius: .28rem;
+    line-height: .46rem;
+    text-align: center;
+    font-size: .24rem;
+    min-width: 1.15rem;
+    color: ${props => props.active ? '#fff' : '#7f4395'};
+    background: ${props => props.active ? '#7f4395' : 'transparent'}
+  }
 `
 
 export {
-  NavSecondCate
+  NavSecondCate,
+  NavSecondCateLi
 }

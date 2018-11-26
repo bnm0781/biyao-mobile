@@ -15,7 +15,7 @@ export const commendListDataSyncAgain = (commendListAgain) => {
   }
 }
 
-export const commendListDataAsync = (dispatch, homeScroll, pageIndex) => {
+export const commendListDataAsync = (dispatch, recommendScroll, pageIndex) => {
   return () => {
     fetch('/api/getHomeProductList' ,{
       method: 'POST',
@@ -31,27 +31,27 @@ export const commendListDataAsync = (dispatch, homeScroll, pageIndex) => {
       .then(response => response.json())
       .then(result => {
         dispatch(commendListDataSync(result.data.productList))
-        homeScroll.refresh()
+        recommendScroll.refresh()
       })
   }
 }
 
-export const commendListDataAsyncAgain = (dispatch, homeScroll, pageIndex) => {
+export const commendListDataAsyncAgain = (dispatch, recommendScroll, pageIndex) => {
   return () => {
     fetch('/api/getHomeProductList', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
-        },
-        body: qs.stringify({
-          pageIndex: pageIndex,
-          pageSize: 20
-        })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+      },
+      body: qs.stringify({
+        pageIndex: pageIndex,
+        pageSize: 20
       })
+    })
       .then(response => response.json())
       .then(result => {
         dispatch(commendListDataSyncAgain(result.data.productList))
-        homeScroll.refresh()
+        recommendScroll.refresh()
       })
   }
 }

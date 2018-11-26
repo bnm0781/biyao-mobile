@@ -8,14 +8,6 @@ import { SearchContainer as Search } from 'common/search'    // 搜索组件
 import { NavSecondCateContainer as NavSecondCate } from 'common/navSecondCate'
 
 class HeaderContainer extends Component {
-  shouldComponentUpdate(nextProps) {
-    if (!!nextProps) {
-      return false
-    } else {
-      return true
-    }
-  }
-
   render() {
     return (
       <Header>

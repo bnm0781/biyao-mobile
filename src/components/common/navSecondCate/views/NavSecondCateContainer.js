@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import BScroll from 'better-scroll'
+import qs from 'qs'
 
 import { NavSecondCate, NavSecondCateLi } from './styledComponent'
-
-import { categoryListDataAsync } from '../../nav/actionCreator'
-
-const mapDispatch = (dispatch) => {
-  return {
-    getCategoryList(categoryId) {
-      dispatch(categoryListDataAsync(dispatch, categoryId))
-    }
-  }
-}
 
 class NavSecondCateContainer extends Component {
   constructor(props) {
@@ -46,6 +36,7 @@ class NavSecondCateContainer extends Component {
     }
 
     this.navSecondClick = this.navSecondClick.bind(this)
+    this.getCategoryList = this.getCategoryList.bind(this)
   }
 
   componentDidMount() {
@@ -58,7 +49,7 @@ class NavSecondCateContainer extends Component {
 
   navSecondClick(event, index, item) {
     // 请求当前页签需要渲染的数据
-    this.props.getCategoryList(item.categoryId)
+    this.getCategoryList(item.categoryId)
 
     // 点击当前页签使其高亮
     this.setState({activeIndex: index})
@@ -72,6 +63,20 @@ class NavSecondCateContainer extends Component {
       categoryId: item.categoryId,
       category: categoryValue
     }})
+  }
+
+  getCategoryList(categoryId) {
+    fetch('/api/classify/getProductData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+      },
+      body: qs.stringify({
+        categoryID: categoryId
+      })
+    })
+      .then(response => response.json())
+      .then(result => this.setState({categoryList: result.data.productList}))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -112,4 +117,4 @@ class NavSecondCateContainer extends Component {
   }
 }
 
-export default withRouter(connect(null, mapDispatch)(NavSecondCateContainer));
+export default withRouter(NavSecondCateContainer);

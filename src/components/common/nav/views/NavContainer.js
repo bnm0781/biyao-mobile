@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import BScroll from 'better-scroll'
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 import { Nav, NavFirstCate, CategoryList, CategoryListLi } from './styledComponent'
-
-import { categoryListDataAsync } from '../actionCreator'
-
-const mapDispatch = (dispatch) => {
-  return {
-    getCategoryList(categoryId) {
-      dispatch(categoryListDataAsync(dispatch, categoryId))
-    }
-  }
-}
 
 class NavContainer extends Component {
   constructor(props) {
@@ -43,13 +32,21 @@ class NavContainer extends Component {
         {category: '医疗器械', categoryId: 547},
         {category: '定制', categoryId: 578}
       ],
-      activeIndex: 0    // 当前需要高亮的页签项数
+      activeIndex: undefined    // 当前需要高亮的页签项数
     }
 
     this.navLiClick = this.navLiClick.bind(this)
   }
 
   componentDidMount() {
+    // 刷新页面后判断高亮页签
+    let categoryState = this.props.location.state
+    if (categoryState === undefined) {
+      this.setState({activeIndex: undefined})
+    } else {
+      this.setState({activeIndex: categoryState.category})
+    }
+
     // nav 滚动效果
     this.navListScroll = new BScroll(this.navListScrollEl, {
       click: true,
@@ -58,9 +55,9 @@ class NavContainer extends Component {
   }
 
   // 页签点击事件
-  navLiClick(event, index, item) {
+  navLiClick(event, item) {
     // 点击当前页签使其高亮
-    this.setState({activeIndex: index})
+    this.setState({activeIndex: item.categoryId})
 
     // 滚动到点击的目标元素
     this.navListScroll.scrollToElement(event.target, 100, true, true)
@@ -70,7 +67,6 @@ class NavContainer extends Component {
       this.props.history.push('/')
     } else {
       // 请求当前页签需要渲染的数据
-      this.props.getCategoryList(item.categoryId)
       this.props.history.push({pathname: '/category', state: {
         categoryId: item.categoryId,
         category: item.categoryId
@@ -90,8 +86,8 @@ class NavContainer extends Component {
                 this.state.categoryList.map((item, index) => (
                   <CategoryListLi
                     key={index}
-                    active={this.state.activeIndex === index || false}
-                    onClick={(event) => this.navLiClick(event, index, item)}
+                    active={this.state.activeIndex === item.categoryId}
+                    onClick={(event) => this.navLiClick(event, item)}
                   ><i>{item.category}</i></CategoryListLi>
                 ))
               }
@@ -104,4 +100,4 @@ class NavContainer extends Component {
   }
 }
 
-export default withRouter(connect(null, mapDispatch)(NavContainer));
+export default withRouter(NavContainer)

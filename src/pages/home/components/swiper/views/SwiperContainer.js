@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, WingBlank } from 'antd-mobile';
+import { withRouter } from 'react-router-dom'
 
 import { Swiper } from './styledComponent'
 
@@ -9,15 +10,35 @@ class SwiperContainer extends Component {
     this.state = {
       // swiper 渲染的图片
       data: [
-        'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JT2AU4KxAAC5sX2fhEg369.jpg',
-        'https://bfs.biyao.com/group1/M00/6E/F4/rBACVFv1JVuAMnlRAACYp-q-T2Q201.jpg',
-        'https://bfs.biyao.com/group1/M00/70/02/rBACVFv31jGAXZ5AAACSSqkobRc041.jpg',
-        'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1JaeAITl8AACuP5MH0Cg174.jpg',
-        'https://bfs.biyao.com/group1/M00/70/B2/rBACW1v1Jb-AIzWYAACWgjQ5qyU181.jpg',
-        'https://bfs.biyao.com/group1/M00/71/B6/rBACYVv31eWAVnWMAACeJ8rmLCI538.jpg'
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/71/3D/rBACVFv7xEiAEclvAACZhZVP3lo343.jpg',
+          supplierID: 130146
+        },
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/72/F1/rBACYVv7xIGARTN3AACF_ZUUoLI939.jpg',
+          supplierID: 130108
+        },
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/72/FC/rBACW1v7xMGAVQsuAADEhUxYa8c978.jpg',
+          supplierID: 130036
+        },
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/72/F2/rBACYVv7xNqAAilJAABY0bN-MZU686.jpg',
+          supplierID: 130119
+        },
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/72/F2/rBACYVv7xPaATLxFAACaJAUj3Ys239.jpg',
+          supplierID: 130237
+        },
+        {
+          imgSrc: 'https://bfs.biyao.com/group1/M00/71/3D/rBACVFv7xQyACfahAAEKMHLdq08176.jpg',
+          supplierID: 130239
+        }
       ],
       imgHeight: '2.6rem'
     }
+
+    this.goSwiperUrl = this.goSwiperUrl.bind(this)
   }
 
   shouldComponentUpdate(nextProps) {
@@ -26,6 +47,10 @@ class SwiperContainer extends Component {
     } else {
       return true
     }
+  }
+
+  goSwiperUrl(supplierID) {
+    this.props.history.push({pathname: '/swiper', state: {supplierID}})
   }
 
   render() {
@@ -55,11 +80,12 @@ class SwiperContainer extends Component {
           >
             {this.state.data.map(val => (
               <span
-                key={val}
+                key={val.supplierID}
                 style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+                onClick={() => this.goSwiperUrl(val.supplierID)}
               >
                 <img
-                  src={`${val}`}
+                  src={`${val.imgSrc}`}
                   alt=""
                   style={{ width: '100%', verticalAlign: 'top' }}
                   onLoad={() => {
@@ -76,4 +102,4 @@ class SwiperContainer extends Component {
   }
 }
 
-export default SwiperContainer;
+export default withRouter(SwiperContainer);

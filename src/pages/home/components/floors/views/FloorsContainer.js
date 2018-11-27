@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable'
 
-import { TitleContainer as Title } from 'common/title'
 import { DaliyNewContainer as DailyNew } from '../components/dailyNew'
 import { MakerContainer as Maker } from '../components/maker'
 import { PeachContainer as Peach } from '../components/peach'
 import { RankingContainer as Ranking } from '../components/ranking'
 import { FloorContainer as Floor } from '../components/floor'
+import { ClientContainer as Client } from '../components/client'
 
 class FloorsContainer extends Component {
   constructor(props) {
@@ -32,7 +32,6 @@ class FloorsContainer extends Component {
 
   render() {
     if (Map(this.state.floors).size !== 0) {
-      console.log(this.state.floors);
       return (
         <div className="floors">
           <DailyNew></DailyNew>
@@ -44,6 +43,7 @@ class FloorsContainer extends Component {
               <Floor floor={item} key={index}></Floor>
             ))
           }
+          <Client client={this.state.floors.repeat}></Client>
         </div>
       );
     } else {

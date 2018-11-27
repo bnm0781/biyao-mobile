@@ -6,8 +6,10 @@ import { SwiperContainer as Swiper } from '../components/swiper'                
 import { GuaranteeContainer as Guarantee } from '../components/guarantee'          // 保证书组件
 import { OperateContainer as Operate } from '../components/operate'                // 分类列表组件
 import { FloorsContainer as Floors } from '../components/floors'                   // 楼梯组件
+import { HandpickContainer as Handpick } from '../components/handpick'             // 精选组件
 import { CommendContainer as Commend } from '../components/commend'                // 为你推荐组件
 import { GroupBuyingContainer as GroupBuying } from '../components/groupBuying'    // 拼团组件
+import { TopContainer as Top } from 'common/top'    // 拼团组件
 import { Main } from './styledComponent'
 
 import { commendListDataAsync, commendListDataAsyncAgain } from '../actionCreator'
@@ -58,13 +60,17 @@ class HomeRecommend extends Component {
         this.setState(state => ({
           ...state,
           pageIndex: state.pageIndex + 1
-        }))
+        }), () => {
+          this.recommendScroll.refresh()
+        })
         this.recommendScroll.finishPullUp()
       } else {
         this.setState(state => ({
           ...state,
           isLoading: '没有更多数据了'
-        }))
+        }), () => {
+          this.recommendScroll.refresh()
+        })
       }
     })
 
@@ -94,6 +100,7 @@ class HomeRecommend extends Component {
           <Guarantee></Guarantee>
           <Operate></Operate>
           <Floors></Floors>
+          <Handpick></Handpick>
           <Commend></Commend>
           <div style={{
             height: '1rem',
@@ -102,7 +109,8 @@ class HomeRecommend extends Component {
             color: 'gray'
           }}>{this.state.isLoading}</div>
         </Main>
-        {/* <GroupBuying isShow={this.state.isShow} ></GroupBuying> */}
+        <GroupBuying isShow={this.state.isShow} ></GroupBuying>
+        <Top isShow={!this.state.isShow} recommendScroll={this.recommendScroll}></Top>
       </div>
     )
   }

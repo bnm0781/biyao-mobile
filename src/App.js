@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { Route } from 'react-router-dom'
 
 import { OriginContainer as Origin } from 'pages/origin'    // 视图窗口
+import { SwiperDetailsContainer as SwiperDetails } from 'pages/swiperDetails'    // 视图窗口
 
 class App extends Component {
   render() {
     return (
-      <Origin></Origin>
+      <Fragment>
+          <Route exact path="/" component={Origin}></Route>
+          <Route exact path="/swiper" component={SwiperDetails}></Route>
+      </Fragment>
     )
   }
 }

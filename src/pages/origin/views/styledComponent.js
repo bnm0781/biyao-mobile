@@ -24,6 +24,9 @@ const OriginView = styled.div `
     font-size: .24rem !important;
     margin-top: 10px !important;
   }
+  .am-tabs-pane-wrap {
+    overflow: hidden;
+  }
 `
 
 export {

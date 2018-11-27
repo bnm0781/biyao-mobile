@@ -6,6 +6,7 @@ const Main = styled.div `
 
 const Category = styled.div `
   padding-top: 2.5rem;
+  padding-bottom: .3rem;
 `
 
 const CategoryList = styled.div `
@@ -73,6 +74,7 @@ const CategoryList = styled.div `
   }
   .item-labels {
     line-height: .26rem;
+    /* height: .41rem; */
     overflow: hidden;
     span {
       display: inline-block;
@@ -96,12 +98,18 @@ const CategoryList = styled.div `
     color: #BF9E6B;
     font-size: .24rem;
     margin-bottom: .08rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .item-title {
     font-family: PingFangSC-Regular;
     font-size: .24rem;
     color: #4A4A4A;
     line-height: .33rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .item-praise {
     font-family: PingFangSC-Regular;
@@ -109,6 +117,9 @@ const CategoryList = styled.div `
     color: #BBB;
     margin-top: .08rem;
     line-height: .28rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `
 

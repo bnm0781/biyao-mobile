@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
+import { withRouter } from 'react-router-dom'
+import qs from 'qs'
 
 import { Category, CategoryList } from './styledComponent'
 
-const mapState = (state) => {
-  return {
-    categoryList: state.getIn(['nav', 'categoryList'])
-  }
-}
-
 class HomeCategory extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryList: []    // 分类列表需要渲染的数据
+    }
+
+    this.getCategoryList = this.getCategoryList.bind(this)
+  }
+
   componentDidMount() {
+    // 刷新页面后显示当前路径所所展示的内容
+    let categoryId = this.props.location.state.category
+    this.getCategoryList(categoryId)
+
     // 页面滑动效果
     this.categoryScroll = new BScroll(this.categoryScrollEl, {
       click: true,
@@ -19,12 +27,31 @@ class HomeCategory extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    let categoryId = nextProps.location.state.categoryId
+    this.getCategoryList(categoryId)
+  }
+
+  getCategoryList(categoryId) {
+    fetch('/api/classify/getProductData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+      },
+      body: qs.stringify({
+        categoryID: categoryId
+      })
+    })
+      .then(response => response.json())
+      .then(result => this.setState({categoryList: result.data.productList}))
+  }
+
   render() {
     return (
       <div style={{height: '100%'}} ref={el => this.categoryScrollEl = el}>
         <Category>
           {
-            this.props.categoryList.toJS().map(list => (
+            this.state.categoryList.map(list => (
               <CategoryList key={list.categoryName}>
                 <p className="cateName">{list.categoryName}</p>
                 <ul className="productList">
@@ -63,4 +90,4 @@ class HomeCategory extends Component {
   }
 }
 
-export default connect(mapState, null)(HomeCategory)
+export default withRouter(HomeCategory)

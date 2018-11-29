@@ -9,7 +9,7 @@ import { FloorsContainer as Floors } from '../components/floors'                
 import { HandpickContainer as Handpick } from '../components/handpick'             // 精选组件
 import { CommendContainer as Commend } from '../components/commend'                // 为你推荐组件
 import { GroupBuyingContainer as GroupBuying } from '../components/groupBuying'    // 拼团组件
-import { TopContainer as Top } from 'common/top'    // 拼团组件
+import { TopContainer as Top } from 'common/top'                                   // 返回顶部组件
 import { Main } from './styledComponent'
 
 import { commendListDataAsync, commendListDataAsyncAgain } from '../actionCreator'
@@ -110,7 +110,7 @@ class HomeRecommend extends Component {
           }}>{this.state.isLoading}</div>
         </Main>
         <GroupBuying isShow={this.state.isShow} ></GroupBuying>
-        <Top isShow={!this.state.isShow} recommendScroll={this.recommendScroll}></Top>
+        <Top isShow={!this.state.isShow} scroll={this.recommendScroll}></Top>
       </div>
     )
   }

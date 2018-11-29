@@ -59,7 +59,7 @@ class NavSecondCateContainer extends Component {
 
     // 路由跳转
     let categoryValue = this.props.location.state.category    // 需要将上层页签路由再次 push 到 state 中
-    this.props.history.push({pathname: '/category', state: {
+    this.props.history.push({pathname: '/home/category', state: {
       categoryId: item.categoryId,
       category: categoryValue
     }})

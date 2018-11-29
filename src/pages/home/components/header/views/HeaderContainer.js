@@ -15,7 +15,7 @@ class HeaderContainer extends Component {
         <Nav></Nav>
         {
           // 通过路径判断是否渲染 NavSecondCate 组件
-          this.props.location.pathname === '/category' ? <NavSecondCate /> : null
+          this.props.location.pathname === '/home/category' ? <NavSecondCate /> : null
         }
       </Header>
     );

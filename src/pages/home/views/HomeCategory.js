@@ -4,12 +4,14 @@ import { withRouter } from 'react-router-dom'
 import qs from 'qs'
 
 import { Category, CategoryList } from './styledComponent'
+import { TopContainer as Top } from 'common/top'              // 返回顶部组件
 
 class HomeCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryList: []    // 分类列表需要渲染的数据
+      categoryList: [],    // 分类列表需要渲染的数据
+      isShow: true         // 判断是否显示团购弹幕，true 为显示，false 为不显示
     }
 
     this.getCategoryList = this.getCategoryList.bind(this)
@@ -23,11 +25,27 @@ class HomeCategory extends Component {
     // 页面滑动效果
     this.categoryScroll = new BScroll(this.categoryScrollEl, {
       click: true,
-      scrollX: true
+      scrollY: true,
+      probeType: 1
     })
+
+    // 监听滚动事件
+    this.categoryScroll.on('scroll', (position) => {
+      console.log(0);
+      // 如果滚动的距离小于650，使团购弹幕显示
+      // 大于650，使其隐藏
+      if ( position.y > -650) {
+        this.setState({isShow: true})
+      } else {
+        this.setState({isShow: false})
+      }
+    })
+
+    this.categoryScroll.refresh()
   }
 
   componentWillReceiveProps(nextProps) {
+    // 路由参数改变时，重新请求数据渲染
     let categoryId = nextProps.location.state.categoryId
     this.getCategoryList(categoryId)
   }
@@ -85,6 +103,7 @@ class HomeCategory extends Component {
             ))
           }
         </Category>
+        {/* <Top isShow={!this.state.isShow} scroll={this.categoryScroll}></Top> */}
       </div>
     );
   }

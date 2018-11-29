@@ -64,10 +64,10 @@ class NavContainer extends Component {
 
     // 判断路由跳转的路径
     if (!item.categoryId) {
-      this.props.history.push('/')
+      this.props.history.push('/home')
     } else {
       // 请求当前页签需要渲染的数据
-      this.props.history.push({pathname: '/category', state: {
+      this.props.history.push({pathname: '/home/category', state: {
         categoryId: item.categoryId,
         category: item.categoryId
       }})

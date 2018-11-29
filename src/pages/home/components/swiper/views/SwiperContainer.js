@@ -15,24 +15,24 @@ class SwiperContainer extends Component {
           supplierID: 130146
         },
         {
-          imgSrc: 'https://bfs.biyao.com/group1/M00/72/F1/rBACYVv7xIGARTN3AACF_ZUUoLI939.jpg',
-          supplierID: 130108
+          imgSrc: 'https://bfs.biyao.com/group1/M00/74/84/rBACYVv-WfeAQO8WAADb1E5Kzhk670.jpg',
+          supplierID: 130022
         },
         {
           imgSrc: 'https://bfs.biyao.com/group1/M00/72/FC/rBACW1v7xMGAVQsuAADEhUxYa8c978.jpg',
-          supplierID: 130036
+          supplierID: 130108
         },
         {
           imgSrc: 'https://bfs.biyao.com/group1/M00/72/F2/rBACYVv7xNqAAilJAABY0bN-MZU686.jpg',
-          supplierID: 130119
+          supplierID: 130036
         },
         {
           imgSrc: 'https://bfs.biyao.com/group1/M00/72/F2/rBACYVv7xPaATLxFAACaJAUj3Ys239.jpg',
-          supplierID: 130237
+          supplierID: 130119
         },
         {
           imgSrc: 'https://bfs.biyao.com/group1/M00/71/3D/rBACVFv7xQyACfahAAEKMHLdq08176.jpg',
-          supplierID: 130239
+          supplierID: 130237
         }
       ],
       imgHeight: '2.6rem'

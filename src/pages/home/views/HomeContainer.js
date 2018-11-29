@@ -11,8 +11,8 @@ class HomeContainer extends Component {
       <Fragment>
         <Header></Header>
         <div style={{height: '100%'}}>
-          <Route path='/' render={() => <HomeRecommend />}></Route>
-          <Route exact path='/category' component={HomeCategory}></Route>
+          <Route exact path='/home' render={() => <HomeRecommend />}></Route>
+          <Route exact path='/home/category' component={HomeCategory}></Route>
         </div>
       </Fragment>
     )

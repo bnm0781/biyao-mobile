@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const SwiperDetails = styled.div `
+const Products = styled.div `
   position: fixed;
   height: 100%;
   width: 100%;
@@ -9,5 +9,5 @@ const SwiperDetails = styled.div `
 `
 
 export {
-  SwiperDetails
+  Products
 }

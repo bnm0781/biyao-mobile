@@ -10,7 +10,7 @@ class TopContainer extends Component {
 
   // 点击事件，点击后返回到页面顶部
   returnTop() {
-    this.props.recommendScroll.scrollTo(0, 0, 1500)
+    this.props.scroll.scrollTo(0, 0, 1500)
   }
 
   render() {

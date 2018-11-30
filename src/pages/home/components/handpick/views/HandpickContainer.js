@@ -3,6 +3,14 @@ import React, { Component } from 'react'
 import { Handpick } from './styledComponent'
 
 class HandpickContainer extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (!!nextProps) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   render() {
     return (
       <Handpick>

@@ -17,7 +17,7 @@ const Footer = styled.div `
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    .customer-service {
+    .customer-service, .shop-car {
       position: relative;
       width: .97rem;
       height: 100%;
@@ -34,12 +34,12 @@ const Footer = styled.div `
           overflow: hidden;
         }
       }
-      .gl-service-text {
+      .gl-service-text, .gl-shop-car-text {
         color: #353535;
         cursor: pointer;
       }
     }
-    .customer-service::after {
+    .customer-service::after, .shop-car::after {
       content: "";
       position: absolute;
       right: 0;
@@ -76,7 +76,7 @@ const Footer = styled.div `
       align-items: center;
       li {
         font-family: PingFang-SC-Medium;
-        font-size: .28rem;
+        font-size: .3rem;
         position: relative;
         flex-grow: 1;
         width: 50%;
@@ -84,10 +84,10 @@ const Footer = styled.div `
         cursor: pointer;
       }
       .buy-shopcar {
-        background: #fff;
-        color: #666;
+        color: #fff;
+        background-color: #e7b32b;
       }
-      .group-buy {
+      .buy-now {
         color: #fff;
         background-color: #7e4395;
       }
